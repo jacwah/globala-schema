@@ -39,7 +39,7 @@ function injectContent() {
 }
 
 function afterLoad() {
-    console.log('afterLoad');
+    setSchedule(schedule.url(readForm()));
     document.getElementById('form-button').addEventListener('click', function() {
         setSchedule(schedule.url(readForm()));
     });
