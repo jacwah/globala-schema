@@ -39,7 +39,7 @@ export function url(schedule) {
         '&schoolid=', schedule.school,
         '/sv-se',
         '&type=-1',
-        '&id=', schedule.id.toLowerCase(),
+        '&id=', schedule.id,
         '&period=',
         '&week=', schedule.week,
         '&mode=0',
