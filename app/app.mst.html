@@ -1,0 +1,17 @@
+<header>
+    <h1>Schema</h1>
+    <form id="form">
+        <select id="id-select">
+            {{#ids}}
+            <option value="{{id}}">{{id}}</option>
+            {{/ids}}
+        </select>
+        <select id="week-select">
+            {{#weeks}}
+            <option value="{{number}}">{{name}}</option>
+            {{/weeks}}
+        </select>
+        <button id="form-button" type="button">Visa</button>
+    </form>
+</header>
+<img alt="Schema" id="schedule-img">
