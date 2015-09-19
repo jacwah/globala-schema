@@ -1,17 +1,19 @@
-<header>
-    <h1>Schema</h1>
-    <form id="form">
-        <select id="id-select">
-            {{#ids}}
-            <option value="{{id}}">{{id}}</option>
-            {{/ids}}
-        </select>
-        <select id="week-select">
-            {{#weeks}}
-            <option value="{{number}}">{{name}}</option>
-            {{/weeks}}
-        </select>
-    </form>
+<header id="main-header">
+    <ul>
+        <span class="title">Schema</span>
+        <form id="form">
+            <li><select id="id-select">
+                {{#ids}}
+                <option value="{{id}}">{{id}}</option>
+                {{/ids}}
+            </select></li>
+            <li><select id="week-select">
+                {{#weeks}}
+                <option value="{{number}}">{{name}}</option>
+                {{/weeks}}
+            </select></li>
+        </form>
+    </ul>
 </header>
 <div id="schedule-container">
     <img alt="Kunde inte hämta schema" id="schedule-img">
