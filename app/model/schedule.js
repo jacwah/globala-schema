@@ -1,5 +1,7 @@
 'use strict';
 
+import { currentWeek } from '../controller/time.js';
+
 const baseUrl = 'http://www.novasoftware.se/ImgGen/schedulegenerator.aspx';
 
 export const schools = {
@@ -54,4 +56,14 @@ export function url(schedule) {
         '&maxwidth=', schedule.width,
         '&maxheight=', schedule.height
     );
+}
+
+export function defaults() {
+    return {
+        school: schools['Globala gymnasiet'],
+        id: ids[0],
+        week: currentWeek(),
+        width: 800,
+        height: 600
+    }
 }

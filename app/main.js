@@ -6,6 +6,8 @@ var env = require('./vendor/electron_boilerplate/env_config');
 var devHelper = require('./vendor/electron_boilerplate/dev_helper');
 var windowStateKeeper = require('./vendor/electron_boilerplate/window_state');
 
+require('./main/messaging');
+
 var mainWindow;
 
 // Preserver of the window size and position between app launches.
@@ -40,4 +42,25 @@ app.on('ready', function () {
 
 app.on('window-all-closed', function () {
     app.quit();
+});
+
+var quitting = false;
+app.on('before-quit', function(event) {
+    if (!quitting) {
+        quitting = true;
+
+        app.on('saved-schedule', function() {
+            console.log('Schedule saved.');
+            app.quit();
+        });
+
+        mainWindow.webContents.send('get-schedule');
+
+        // Wait for save-schedule message before exiting
+        event.preventDefault();
+        setTimeout(function() {
+            console.log('Schedule save timed out, exitting...');
+            app.quit();
+        }, 1000);
+    }
 });

@@ -1,39 +1,12 @@
 'use strict';
 
 var fs = require('fs');
-var moment = require('moment');
+var ipc = require('ipc');
 var Mustache = require('mustache');
-import * as schedule from './schedule/schedule.js';
 
-function readForm() {
-    return {
-        school: schedule.schools['Globala gymnasiet'],
-        id: document.getElementById('id-select').value,
-        week: document.getElementById('week-select').value,
-        width: 600,
-        height: 400
-    }
-}
-
-function setSchedule(url) {
-    console.log('Setting URL:', url)
-    document.getElementById('schedule-img').src = url;
-}
-
-function idView(ids) {
-    return ids.map(function(id) {
-        return { id: id };
-    });
-}
-
-function weekView() {
-    let weeks = [];
-
-    weeks.push({name: 'Denna vecka', number: moment().week()});
-    weeks.push({name: 'Nästa vecka', number: moment().add(7, 'days').week()})
-
-    return weeks;
-}
+import { mainView } from './view/main.js';
+import * as Schedule from './model/schedule.js';
+import { setSchedule, readForm } from './controller/html.js';
 
 function injectContent() {
     return new Promise(function(resolve, reject) {
@@ -41,21 +14,32 @@ function injectContent() {
             if (err) {
                 reject(err);
             }
-            let view = {
-                ids: idView(schedule.ids),
-                weeks: weekView()
-            };
+            let view = mainView(Schedule.ids);
             let rendered = Mustache.render(data, view);
             document.getElementById('container').innerHTML = rendered;
-            resolve();
+
+            ipc.on('schedule', function(schedule) {
+                console.log('Recieved schedule from main process', schedule);
+                if (schedule === null) {
+                    schedule = Schedule.defaults();
+                }
+                setSchedule(Schedule.url(schedule));
+                resolve();
+            });
+
+            ipc.send('load-schedule');
         });
     });
 }
 
 function afterLoad() {
-    setSchedule(schedule.url(readForm()));
+    ipc.on('get-schedule', function() {
+        console.log('Recieved get-schedule request');
+        ipc.send('save-schedule', readForm());
+    });
+
     document.getElementById('form-button').addEventListener('click', function() {
-        setSchedule(schedule.url(readForm()));
+        setSchedule(Schedule.url(readForm()));
     });
 }
 
