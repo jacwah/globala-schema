@@ -1,10 +1,12 @@
 {
   "name": "globala-schema",
   "productName": "Globala schema",
-  "identifier": "com.example.electron-boilerplate",
-  "description": "Starter for your Electron application. Out of the box ready for serious stuff.",
+  "identifier": "com.github.jacwah.globala-schema",
+  "description": "Rimligare sätt att visa ditt schema på Globala gymnasiet.",
   "version": "0.1.0",
-  "author": "Mr Gumby <gumby@sillywalks.com>",
+  "author": "Jacob Wahlgren <jacob.wahlgren@gmail.com>",
+  "repository": "jacwah/globala-schema",
+  "license": "MIT",
   "main": "main.js",
   "config": {
     "target": "development"
