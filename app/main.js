@@ -6,7 +6,6 @@ var env = require('./vendor/electron_boilerplate/env_config');
 var devHelper = require('./vendor/electron_boilerplate/dev_helper');
 var windowStateKeeper = require('./vendor/electron_boilerplate/window_state');
 
-require('./main/messaging');
 
 var mainWindow;
 
@@ -17,6 +16,8 @@ var mainWindowState = windowStateKeeper('main', {
 });
 
 app.on('ready', function () {
+
+    require('./main/messaging');
 
     mainWindow = new BrowserWindow({
         x: mainWindowState.x,
