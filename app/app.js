@@ -17,30 +17,8 @@ function injectContent() {
             let view = mainView(Schedule.ids);
             let rendered = Mustache.render(data, view);
             document.getElementById('container').innerHTML = rendered;
-
-            ipc.on('schedule', function(schedule) {
-                console.log('Recieved schedule from main process', schedule);
-                if (schedule === null) {
-                    schedule = Schedule.defaults();
-                } else {
-                    // Config doesn't save all attributes
-                    let d = Schedule.defaults();
-                    for (let a in schedule) { d[a] = schedule[a]; }
-                    schedule = d;
-                }
-                setSchedule(Schedule.url(schedule));
-                setForm(schedule);
-                resolve();
-            });
-
-            ipc.send('load-schedule');
+            resolve();
         });
-    });
-}
-
-function afterLoad() {
-    document.getElementById('form-button').addEventListener('click', function() {
-        setSchedule(Schedule.url(readForm()));
     });
 }
 
@@ -49,4 +27,29 @@ window.onbeforeunload = function(event) {
 }
 
 injectContent()
-.then(afterLoad);
+.then(function() {
+    ipc.on('schedule', function(schedule) {
+        console.log('Recieved schedule from main process', schedule);
+
+        if (schedule === null) {
+            schedule = Schedule.defaults();
+        } else {
+            // Config doesn't save all attributes
+            let d = Schedule.defaults();
+            for (let a in schedule) { d[a] = schedule[a]; }
+            schedule = d;
+        }
+        setSchedule(Schedule.url(schedule));
+        setForm(schedule);
+    });
+
+    ipc.send('load-schedule');
+})
+.then(function() {
+    document.getElementById('form-button').addEventListener('click', function() {
+        setSchedule(Schedule.url(readForm()));
+    });
+})
+.catch(function(err) {
+    console.log(err);
+});
