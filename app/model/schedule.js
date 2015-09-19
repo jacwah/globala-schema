@@ -1,6 +1,6 @@
 'use strict';
 
-import { currentWeek } from '../controller/time.js';
+import { currentWeek } from '../model/time.js';
 
 const baseUrl = 'http://www.novasoftware.se/ImgGen/schedulegenerator.aspx';
 

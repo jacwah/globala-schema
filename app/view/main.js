@@ -1,4 +1,4 @@
-var moment = require('moment');
+import { currentWeek, nextWeek } from '../model/time.js';
 
 export function mainView(ids) {
     return {
@@ -16,8 +16,8 @@ function idView(ids) {
 function weekView() {
     let weeks = [];
 
-    weeks.push({name: 'Denna vecka', number: moment().week()});
-    weeks.push({name: 'Nästa vecka', number: moment().add(7, 'days').week()})
+    weeks.push({name: 'Denna vecka', number: currentWeek()});
+    weeks.push({name: 'Nästa vecka', number: nextWeek()})
 
     return weeks;
 }
