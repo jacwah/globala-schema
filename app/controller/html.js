@@ -11,6 +11,15 @@ export function readForm() {
     return schedule;
 }
 
+export function setForm(schedule) {
+    if (schedule.id !== undefined) {
+        document.getElementById('id-select').value = schedule.id;
+    }
+    if (schedule.week !== undefined) {
+        document.getElementById('week-select').value = schedule.week;
+    }
+}
+
 export function setSchedule(url) {
     console.log('Setting URL', url)
     document.getElementById('schedule-img').src = url;

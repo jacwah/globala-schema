@@ -6,7 +6,7 @@ var Mustache = require('mustache');
 
 import { mainView } from './view/main.js';
 import * as Schedule from './model/schedule.js';
-import { setSchedule, readForm } from './controller/html.js';
+import { setSchedule, readForm, setForm } from './controller/html.js';
 
 function injectContent() {
     return new Promise(function(resolve, reject) {
@@ -29,6 +29,7 @@ function injectContent() {
                     schedule = d;
                 }
                 setSchedule(Schedule.url(schedule));
+                setForm(schedule);
                 resolve();
             });
 
