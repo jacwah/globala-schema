@@ -46,7 +46,7 @@ injectContent()
         ipc.send('save-schedule', readForm());
     });
 
-    document.getElementById('form-button').addEventListener('click', function() {
+    document.getElementById('form').addEventListener('change', function() {
         setSchedule(Schedule.url(readForm()));
     });
 })
