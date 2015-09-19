@@ -54,6 +54,10 @@ injectContent()
     document.getElementById('form').addEventListener('change', function() {
         setSchedule(Schedule.url(readForm()));
     });
+
+    document.getElementById('refresh-button').addEventListener('click', function() {
+        ipc.send('reload');
+    });
 })
 .catch(function(err) {
     console.log(err);

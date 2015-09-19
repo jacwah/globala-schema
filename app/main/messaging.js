@@ -1,6 +1,7 @@
 'use strict';
 
 var app = require('app');
+var BrowserWindow = require('browser-window');
 var ipc = require('ipc');
 var config = require('./config');
 
@@ -20,4 +21,10 @@ ipc.on('save-schedule', function(event, schedule) {
     console.log('Recieved save-schedule request');
 
     config.saveSchedule(schedule);
+});
+
+ipc.on('reload', function (event) {
+    console.log('Recieved reload request');
+
+    BrowserWindow.getFocusedWindow().reloadIgnoringCache();
 });
