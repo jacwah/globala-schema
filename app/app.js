@@ -22,10 +22,6 @@ function injectContent() {
     });
 }
 
-window.onbeforeunload = function(event) {
-    ipc.send('save-schedule', readForm());
-}
-
 injectContent()
 .then(function() {
     ipc.on('schedule', function(schedule) {
@@ -46,6 +42,10 @@ injectContent()
     ipc.send('load-schedule');
 })
 .then(function() {
+    window.addEventListener('unload', function() {
+        ipc.send('save-schedule', readForm());
+    });
+
     document.getElementById('form-button').addEventListener('click', function() {
         setSchedule(Schedule.url(readForm()));
     });
