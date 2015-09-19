@@ -18,8 +18,6 @@ ipc.on('load-schedule', function(event) {
 
 ipc.on('save-schedule', function(event, schedule) {
     console.log('Recieved save-schedule request');
-    config.saveSchedule(schedule)
-    .then(function() {
-        app.emit('saved-schedule');
-    });
+
+    config.saveSchedule(schedule);
 });

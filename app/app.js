@@ -22,6 +22,11 @@ function injectContent() {
                 console.log('Recieved schedule from main process', schedule);
                 if (schedule === null) {
                     schedule = Schedule.defaults();
+                } else {
+                    // Config doesn't save all attributes
+                    let d = Schedule.defaults();
+                    for (let a in schedule) { d[a] = schedule[a]; }
+                    schedule = d;
                 }
                 setSchedule(Schedule.url(schedule));
                 resolve();
@@ -33,14 +38,13 @@ function injectContent() {
 }
 
 function afterLoad() {
-    ipc.on('get-schedule', function() {
-        console.log('Recieved get-schedule request');
-        ipc.send('save-schedule', readForm());
-    });
-
     document.getElementById('form-button').addEventListener('click', function() {
         setSchedule(Schedule.url(readForm()));
     });
+}
+
+window.onbeforeunload = function(event) {
+    ipc.send('save-schedule', readForm());
 }
 
 injectContent()

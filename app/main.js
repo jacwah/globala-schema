@@ -43,24 +43,3 @@ app.on('ready', function () {
 app.on('window-all-closed', function () {
     app.quit();
 });
-
-var quitting = false;
-app.on('before-quit', function(event) {
-    if (!quitting) {
-        quitting = true;
-
-        app.on('saved-schedule', function() {
-            console.log('Schedule saved.');
-            app.quit();
-        });
-
-        mainWindow.webContents.send('get-schedule');
-
-        // Wait for save-schedule message before exiting
-        event.preventDefault();
-        setTimeout(function() {
-            console.log('Schedule save timed out, exitting...');
-            app.quit();
-        }, 1000);
-    }
-});
