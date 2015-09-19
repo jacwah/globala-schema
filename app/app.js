@@ -28,10 +28,10 @@ injectContent()
         console.log('Recieved schedule from main process', schedule);
 
         if (schedule === null) {
-            schedule = Schedule.defaults();
+            schedule = readForm();
         } else {
             // Config doesn't save all attributes
-            let d = Schedule.defaults();
+            let d = readForm();
             for (let a in schedule) { d[a] = schedule[a]; }
             schedule = d;
         }
@@ -44,6 +44,11 @@ injectContent()
 .then(function() {
     window.addEventListener('unload', function() {
         ipc.send('save-schedule', readForm());
+    });
+
+    window.addEventListener('resize', function() {
+        // Adjust schedule size
+        setSchedule(Schedule.url(readForm()));
     });
 
     document.getElementById('form').addEventListener('change', function() {

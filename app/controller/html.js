@@ -7,6 +7,8 @@ export function readForm() {
 
     schedule.id = document.getElementById('id-select').value;
     schedule.week = document.getElementById('week-select').value;
+    schedule.width = document.getElementById('schedule-container').clientWidth;
+    schedule.height = document.getElementById('schedule-container').clientHeight;
 
     return schedule;
 }
