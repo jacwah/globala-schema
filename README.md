@@ -7,7 +7,9 @@ Ett rimligare sätt att visa ditt schema.
 
 ## Installation
 
-Att installera är enkelt. Ladda ner den senaste .dmg filen från [releases](https://github.com/jacwah/globala-schema/releases). Dubbelklicka sen på filen för att installera.
+Att installera är enkelt. Ladda ner den senaste .dmg filen från [releases](https://github.com/jacwah/globala-schema/releases) och dubbelklicka för att installera.
+
+*Fungerar endast på Mac för tillfället.*
 
 ---
 
