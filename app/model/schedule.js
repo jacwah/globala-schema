@@ -8,7 +8,6 @@ export const schools = {
     'Globala gymnasiet': 29120
 };
 
-// From novasoftware 2015-09-17
 export const ids = [
     'ES13A',
     'ES13B',
@@ -20,7 +19,6 @@ export const ids = [
     'NA14B',
     'NA15A',
     'NA15B',
-    'SA12A',
     'SA13A',
     'SA13B',
     'SA14A',
