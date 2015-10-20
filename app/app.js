@@ -2,6 +2,7 @@
 
 var fs = require('fs');
 var ipc = require('ipc');
+var moment = require('moment');
 var Mustache = require('mustache');
 
 import { mainView } from './view/main.js';
@@ -58,6 +59,12 @@ injectContent()
     document.getElementById('refresh-button').addEventListener('click', function() {
         ipc.send('reload');
     });
+
+    // If the app is kept open for a long period of time the schedule should
+    // still be up to date.
+    setTimeout(function() {
+        ipc.send('reload');
+    }, moment.duration(30, 'minutes').asMilliseconds());
 })
 .catch(function(err) {
     console.log(err);
