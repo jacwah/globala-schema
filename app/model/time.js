@@ -18,7 +18,3 @@ function baseMoment() {
 export function currentWeek() {
     return baseMoment().week();
 }
-
-export function nextWeek() {
-    return baseMoment().add(7, 'days').week();
-}

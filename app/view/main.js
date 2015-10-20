@@ -1,4 +1,6 @@
-import { currentWeek, nextWeek } from '../model/time.js';
+'use strict';
+
+import { currentWeek } from '../model/time.js';
 
 export function mainView(ids) {
     return {
@@ -15,9 +17,10 @@ function idView(ids) {
 
 function weekView() {
     let weeks = [];
+    const week = currentWeek();
 
-    weeks.push({name: 'Denna vecka', number: currentWeek()});
-    weeks.push({name: 'Nästa vecka', number: nextWeek()})
+    weeks.push({name: 'Denna vecka', number: week});
+    weeks.push({name: 'Nästa vecka', number: week + 1});
 
     return weeks;
 }
