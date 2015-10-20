@@ -24,7 +24,6 @@ app.on('ready', function () {
     mainWindow.loadUrl('file://' + __dirname + '/spec.html');
 
     devHelper.setDevMenu();
-    mainWindow.openDevTools();
 
     mainWindow.on('close', function () {
         mainWindowState.saveState(mainWindow);
