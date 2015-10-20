@@ -62,9 +62,16 @@ injectContent()
 
     // If the app is kept open for a long period of time the schedule should
     // still be up to date.
-    setTimeout(function() {
-        ipc.send('reload');
-    }, moment.duration(30, 'minutes').asMilliseconds());
+    let timeoutReload = function() {
+        setTimeout(function() {
+            if (navigator.onLine) {
+                ipc.send('reload');
+            } else {
+                timeoutReload();
+            }
+        }, moment.duration(30, 'minutes').asMilliseconds());
+    }
+    timeoutReload();
 })
 .catch(function(err) {
     console.log(err);
