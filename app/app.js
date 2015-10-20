@@ -4,6 +4,7 @@ var fs = require('fs');
 var ipc = require('ipc');
 var moment = require('moment');
 var Mustache = require('mustache');
+var util = require('util');
 
 import { mainView } from './view/main.js';
 import * as Schedule from './model/schedule.js';
@@ -57,6 +58,11 @@ injectContent()
     });
 
     document.getElementById('refresh-button').addEventListener('click', function() {
+        ipc.send('reload');
+    });
+
+    window.addEventListener('online', function() {
+        util.log('Online event fired');
         ipc.send('reload');
     });
 
