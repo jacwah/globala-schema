@@ -57,10 +57,6 @@ injectContent()
         setSchedule(Schedule.url(readForm()));
     });
 
-    document.getElementById('refresh-button').addEventListener('click', function() {
-        ipc.send('reload');
-    });
-
     window.addEventListener('online', function() {
         util.log('Online event fired');
         ipc.send('reload');
