@@ -27,5 +27,5 @@ ipc.on('save-schedule', function(event, schedule) {
 ipc.on('reload', function (event) {
     util.log('Recieved reload request');
 
-    BrowserWindow.getFocusedWindow().reloadIgnoringCache();
+    event.sender.reloadIgnoringCache();
 });
