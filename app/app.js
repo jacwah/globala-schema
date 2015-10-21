@@ -6,7 +6,7 @@ var moment = require('moment');
 var Mustache = require('mustache');
 var util = require('util');
 
-import { mainView } from './view/main.js';
+import { mainView } from './view/main_view.js';
 import * as Schedule from './model/schedule.js';
 import { setSchedule, readForm, setForm } from './controller/html.js';
 
