@@ -16,21 +16,6 @@ var mainWindowState = windowStateKeeper('main', {
     height: 600
 });
 
-function openAbout() {
-    if (aboutWindow == null) {
-        aboutWindow = new BrowserWindow({
-            center: true,
-            resizeable: false
-        });
-
-        aboutWindow.on('close', function() {
-            aboutWindow = null;
-        });
-
-        aboutWindow.loadUrl('file://' + __dirname + '/about.html');
-    }
-}
-
 function createMenus() {
     var name = app.getName();
     var template = [
