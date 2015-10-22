@@ -16,10 +16,13 @@ module.exports.os = function () {
     return 'unsupported';
 };
 
-module.exports.replace = function (str, patterns) {
+module.exports.replace = function (str, patterns, mapper) {
+    if (mapper === undefined) {
+        mapper = function(s) { return s; };
+    }
     Object.keys(patterns).forEach(function (pattern) {
         var matcher = new RegExp('{{' + pattern + '}}', 'g');
-        str = str.replace(matcher, patterns[pattern]);
+        str = str.replace(matcher, mapper(patterns[pattern]));
     });
     return str;
 };

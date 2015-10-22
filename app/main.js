@@ -39,7 +39,7 @@ function createMenus() {
             submenu: [
                 {
                     label: 'About ' + name,
-                    click: function() { openAbout(); }
+                    role: 'about'
                 },
                 {
                     type: 'separator'

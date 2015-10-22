@@ -4,6 +4,7 @@ var Q = require('q');
 var gulpUtil = require('gulp-util');
 var jetpack = require('fs-jetpack');
 var asar = require('asar');
+var _ = require('underscore');
 var utils = require('./utils');
 
 var projectDir;
@@ -48,8 +49,9 @@ var finalize = function () {
     info = utils.replace(info, {
         productName: manifest.productName,
         identifier: manifest.identifier,
-        version: manifest.version
-    });
+        version: manifest.version,
+        copyright: 'Copyright 2015 ' + manifest.author
+    }, _.escape);
     finalAppDir.write('Contents/Info.plist', info);
 
     // Prepare Info.plist of Helper apps
@@ -58,7 +60,7 @@ var finalize = function () {
         info = utils.replace(info, {
             productName: manifest.productName,
             identifier: manifest.identifier
-        });
+        }, _.escape);
         finalAppDir.write('Contents/Frameworks/Electron Helper' + helper_suffix + '.app/Contents/Info.plist', info);
     });
 
