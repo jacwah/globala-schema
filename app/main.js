@@ -96,7 +96,7 @@ app.on('ready', function () {
         mainWindow.maximize();
     }
 
-    mainWindow.loadUrl('file://' + __dirname + '/app.html');
+    mainWindow.loadUrl('file://' + __dirname + '/index.html');
 
     mainWindow.on('close', function () {
         mainWindowState.saveState(mainWindow);
