@@ -10,6 +10,7 @@ var mainView = require('./view/main_view');
 var Schedule = require('./model/schedule');
 var controller = require('./controller/html');
 
+
 function injectContent() {
     return new Promise(function(resolve, reject) {
         fs.readFile(__dirname + '/app.mst.html', 'utf-8', function(err, data) {
@@ -45,7 +46,7 @@ injectContent()
 })
 .then(function() {
     window.addEventListener('unload', function() {
-        ipc.send('save-schedule', readForm());
+        ipc.send('save-schedule', controller.readForm());
     });
 
     window.addEventListener('resize', function() {
