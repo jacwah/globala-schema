@@ -1,6 +1,6 @@
 'use strict';
 
-var currentWeek = require('../model/time').currentWeek;
+var currentWeek = require('./time').currentWeek;
 
 var baseUrl = 'http://www.novasoftware.se/ImgGen/schedulegenerator.aspx';
 

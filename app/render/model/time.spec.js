@@ -1,7 +1,7 @@
 'use strict';
 
 var moment = require('moment');
-var time = require('./time');
+var time = require('./render/model/time');
 
 describe('Time calculations', function() {
     var aSaturday = {
