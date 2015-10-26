@@ -1,8 +1,8 @@
 'use strict';
 
-import { currentWeek } from '../model/time.js';
+var currentWeek = require('../model/time').currentWeek;
 
-export function mainView(ids) {
+module.exports = function mainView(ids) {
     return {
         ids: idView(ids),
         weeks: weekView()
@@ -16,8 +16,8 @@ function idView(ids) {
 }
 
 function weekView() {
-    let weeks = [];
-    const week = currentWeek();
+    var weeks = [];
+    var week = currentWeek();
 
     weeks.push({name: 'Denna vecka', number: week});
     weeks.push({name: 'Nästa vecka', number: week + 1});

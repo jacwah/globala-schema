@@ -5,7 +5,7 @@ var moment = require('moment');
 moment().locale('sv');
 
 function baseMoment() {
-    let m = moment();
+    var m = moment();
 
     // Use next week's schedule on the weekend
     if (m.day() > 5) {
@@ -15,6 +15,6 @@ function baseMoment() {
     return m;
 }
 
-export function currentWeek() {
+module.exports.currentWeek = function currentWeek() {
     return baseMoment().week();
 }

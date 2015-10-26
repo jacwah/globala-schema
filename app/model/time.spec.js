@@ -1,14 +1,14 @@
 'use strict';
 
 var moment = require('moment');
-import * as time from './time.js';
+var time = require('./time');
 
 describe('Time calculations', function() {
-    const aSaturday = {
+    var aSaturday = {
         moment: moment('2015-10-17'),
         week: 42
     }
-    const aMonday = {
+    var aMonday = {
         moment: moment('2015-10-19'),
         week: 43
     }

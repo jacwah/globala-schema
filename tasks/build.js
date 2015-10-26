@@ -14,7 +14,7 @@ var destDir = projectDir.cwd('./build');
 
 var paths = {
     jsCodeToTranspile: [
-        'app/**/*.js',
+        '!app/**/*.js',
         '!app/main.js',
         '!app/main/**',
         '!app/spec.js',
@@ -22,6 +22,7 @@ var paths = {
         '!app/vendor/**'
     ],
     copyFromAppDir: [
+        './**/*.js',
         './main.js',
         './main/**',
         './spec.js',
@@ -57,8 +58,8 @@ var transpileTask = function () {
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(destDir.path()));
 };
-gulp.task('transpile', ['clean'], transpileTask);
-gulp.task('transpile-watch', transpileTask);
+//gulp.task('transpile', ['clean'], transpileTask);
+//gulp.task('transpile-watch', transpileTask);
 
 
 var lessTask = function () {
@@ -102,4 +103,4 @@ gulp.task('watch', function () {
 });
 
 
-gulp.task('build', ['transpile', 'less', 'copy', 'finalize']);
+gulp.task('build', [/*'transpile',*/ 'less', 'copy', 'finalize']);

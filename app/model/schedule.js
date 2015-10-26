@@ -1,14 +1,15 @@
 'use strict';
 
-import { currentWeek } from '../model/time.js';
+var currentWeek = require('../model/time').currentWeek;
 
-const baseUrl = 'http://www.novasoftware.se/ImgGen/schedulegenerator.aspx';
+var baseUrl = 'http://www.novasoftware.se/ImgGen/schedulegenerator.aspx';
 
-export const schools = {
+var schools = {
     'Globala gymnasiet': 29120
 };
+module.exports.schools = schools;
 
-export const ids = [
+var ids = [
     'ES13A',
     'ES13B',
     'ES14A',
@@ -31,8 +32,9 @@ export const ids = [
     'Spri15B',
     'Spri15C'
 ];
+module.exports.ids = ids;
 
-export function url(schedule) {
+module.exports.url = function url(schedule) {
     return baseUrl.concat(
         '?',
         'format=', 'png',
@@ -56,7 +58,7 @@ export function url(schedule) {
     );
 }
 
-export function defaults() {
+module.exports.defaults = function defaults() {
     return {
         school: schools['Globala gymnasiet'],
         id: ids[0],

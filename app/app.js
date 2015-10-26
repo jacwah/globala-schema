@@ -6,9 +6,9 @@ var moment = require('moment');
 var Mustache = require('mustache');
 var util = require('util');
 
-import { mainView } from './view/main_view.js';
-import * as Schedule from './model/schedule.js';
-import { setSchedule, readForm, setForm } from './controller/html.js';
+var mainView = require('./view/main_view');
+var Schedule = require('./model/schedule');
+var controller = require('./controller/html');
 
 function injectContent() {
     return new Promise(function(resolve, reject) {
@@ -30,15 +30,15 @@ injectContent()
         console.log('Recieved schedule from main process', schedule);
 
         if (schedule === null) {
-            schedule = readForm();
+            schedule = controller.readForm();
         } else {
             // Config doesn't save all attributes
-            let d = readForm();
+            let d = controller.readForm();
             for (let a in schedule) { d[a] = schedule[a]; }
             schedule = d;
         }
-        setSchedule(Schedule.url(schedule));
-        setForm(schedule);
+        controller.setSchedule(Schedule.url(schedule));
+        controller.setForm(schedule);
     });
 
     ipc.send('load-schedule');
@@ -50,11 +50,11 @@ injectContent()
 
     window.addEventListener('resize', function() {
         // Adjust schedule size
-        setSchedule(Schedule.url(readForm()));
+        controller.setSchedule(Schedule.url(controller.readForm()));
     });
 
     document.getElementById('form').addEventListener('change', function() {
-        setSchedule(Schedule.url(readForm()));
+        controller.setSchedule(Schedule.url(controller.readForm()));
     });
 
     window.addEventListener('online', function() {

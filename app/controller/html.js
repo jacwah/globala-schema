@@ -1,9 +1,9 @@
 'use strict';
 
-import * as Schedule from '../model/schedule.js';
+var Schedule = require('../model/schedule');
 
-export function readForm() {
-    let schedule = Schedule.defaults();
+module.exports.readForm = function readForm() {
+    var schedule = Schedule.defaults();
 
     schedule.id = document.getElementById('id-select').value;
     schedule.week = document.getElementById('week-select').value;
@@ -13,7 +13,7 @@ export function readForm() {
     return schedule;
 }
 
-export function setForm(schedule) {
+module.exports.setForm = function setForm(schedule) {
     if (schedule.id !== undefined) {
         document.getElementById('id-select').value = schedule.id;
     }
@@ -22,7 +22,7 @@ export function setForm(schedule) {
     }
 }
 
-export function setSchedule(url) {
+module.exports.setSchedule = function setSchedule(url) {
     console.log('Setting URL', url)
     document.getElementById('schedule-img').src = url;
 }
