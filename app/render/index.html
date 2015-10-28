@@ -12,6 +12,7 @@
                 {{selection.current.week}}
                 <a href="" ng-click="++selection.current.nextWeek()">Nästa vecka</a>
             </p>
+            <hr>
             <ul>
                 <li ng-repeat="id in selection.ids">
                     <a href="" ng-click="selection.current.id = id">{{id}}</a>
