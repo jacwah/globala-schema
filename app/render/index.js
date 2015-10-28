@@ -15,6 +15,11 @@ angular.module('scheduleApp', [])
         selection.current = currentSchedule;
         selection.current.setId(selection.ids[0]);
     }])
+    .controller('ScheduleController', ['currentSchedule', function(currentSchedule) {
+        var schedule = this;
+
+        schedule.current = currentSchedule;
+    }])
     .constant('Schedule', require('./model/schedule'))
     .service('currentSchedule', ['Schedule', function(Schedule) {
         this.obj = Schedule.defaults();

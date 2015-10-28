@@ -6,12 +6,14 @@
     </head>
     <body>
         <aside ng-controller="SelectionController as selection">
-            <p>Url: {{selection.current.getUrl()}}</p>
             <ul>
                 <li ng-repeat="id in selection.ids">
                     <a href="" ng-click="selection.current.setId(id)">{{id}}</a>
                 </li>
             </ul>
         </aside>
+        <div ng-controller="ScheduleController as schedule">
+            <img ng-attr-src="{{schedule.current.getUrl()}}" alt="Kan inte visa schema">
+        </div>
     </body>
 </html>
