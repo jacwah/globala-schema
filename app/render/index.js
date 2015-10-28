@@ -28,5 +28,13 @@ angular.module('scheduleApp', [])
         this.getUrl = function() {
             return Schedule.url(this);
         };
+
+        this.nextWeek = function() {
+            this.week = this.week + 1;
+        }
+
+        this.previousWeek = function() {
+            this.week = this.week - 1;
+        }
     }])
 ;

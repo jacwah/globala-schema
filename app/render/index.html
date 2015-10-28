@@ -1,11 +1,17 @@
 <!doctype html>
 <html ng-app="scheduleApp" ng-strict-di>
     <head>
+        <meta charset="utf-8">
         <script src="../node_modules/angular/angular.js"></script>
         <script src="index.js"></script>
     </head>
     <body>
         <aside ng-controller="SelectionController as selection">
+            <p>
+                <a href="" ng-click="selection.current.previousWeek()">Föregående vecka</a>
+                {{selection.current.week}}
+                <a href="" ng-click="++selection.current.nextWeek()">Nästa vecka</a>
+            </p>
             <ul>
                 <li ng-repeat="id in selection.ids">
                     <a href="" ng-click="selection.current.id = id">{{id}}</a>
