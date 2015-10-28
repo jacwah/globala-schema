@@ -8,7 +8,7 @@
         <aside ng-controller="SelectionController as selection">
             <ul>
                 <li ng-repeat="id in selection.ids">
-                    <a href="" ng-click="selection.current.setId(id)">{{id}}</a>
+                    <a href="" ng-click="selection.current.id = id">{{id}}</a>
                 </li>
             </ul>
         </aside>

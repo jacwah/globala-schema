@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require('underscore');
 var ipc = require('ipc');
 
 angular.module('scheduleApp', [])
@@ -13,7 +14,7 @@ angular.module('scheduleApp', [])
 
         selection.ids = Schedule.ids;
         selection.current = currentSchedule;
-        selection.current.setId(selection.ids[0]);
+        selection.current.id = selection.ids[0];
     }])
     .controller('ScheduleController', ['currentSchedule', function(currentSchedule) {
         var schedule = this;
@@ -22,14 +23,10 @@ angular.module('scheduleApp', [])
     }])
     .constant('Schedule', require('./model/schedule'))
     .service('currentSchedule', ['Schedule', function(Schedule) {
-        this.obj = Schedule.defaults();
-
-        this.setId = function(id) {
-            this.obj.id = id;
-        };
+        _.extend(this, Schedule.defaults());
 
         this.getUrl = function() {
-            return Schedule.url(this.obj);
+            return Schedule.url(this);
         };
     }])
 ;
