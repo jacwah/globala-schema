@@ -6,11 +6,10 @@
     </head>
     <body>
         <aside ng-controller="SelectionController as selection">
-            <p>Current: {{selection.current}}</p>
-            <p>Url: {{selection.currentSchedule.url}}</p>
+            <p>Url: {{selection.current.getUrl()}}</p>
             <ul>
                 <li ng-repeat="id in selection.ids">
-                    <a href="" ng-click="selection.set(id)">{{id}}</a>
+                    <a href="" ng-click="selection.current.setId(id)">{{id}}</a>
                 </li>
             </ul>
         </aside>
