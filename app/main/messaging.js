@@ -14,6 +14,7 @@ ipc.on('load-schedule', function(event) {
         event.sender.send('schedule', schedule);
     })
     .catch(function(err) {
+        util.log(err);
         event.sender.send('schedule', null);
     });
 });

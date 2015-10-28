@@ -2,14 +2,20 @@
 
 var _ = require('underscore');
 var ipc = require('ipc');
+var Schedule = require('./model/schedule');
 
 angular.module('scheduleApp', [])
     .run(['$window', 'currentSchedule', function ($window, currentSchedule) {
         $window.addEventListener('unload', function() {
-            ipc.send('save-schedule', currentSchedule.obj);
+            ipc.send('save-schedule', currentSchedule);
         });
+
+        ipc.on('schedule', function(schedule) {
+            _.extend(currentSchedule, schedule);
+        });
+        ipc.send('load-schedule');
     }])
-    .controller('SelectionController', ['currentSchedule', 'Schedule', function(currentSchedule, Schedule) {
+    .controller('SelectionController', ['currentSchedule', function(currentSchedule) {
         var selection = this;
 
         selection.ids = Schedule.ids;
@@ -21,8 +27,7 @@ angular.module('scheduleApp', [])
 
         schedule.current = currentSchedule;
     }])
-    .constant('Schedule', require('./model/schedule'))
-    .service('currentSchedule', ['Schedule', function(Schedule) {
+    .service('currentSchedule', [function() {
         _.extend(this, Schedule.defaults());
 
         this.getUrl = function() {
