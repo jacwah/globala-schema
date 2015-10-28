@@ -1,6 +1,13 @@
 'use strict';
 
+var ipc = require('ipc');
+
 angular.module('scheduleApp', [])
+    .run(['$window', 'currentSchedule', function ($window, currentSchedule) {
+        $window.addEventListener('unload', function() {
+            ipc.send('save-schedule', currentSchedule.obj);
+        });
+    }])
     .controller('SelectionController', ['currentSchedule', 'Schedule', function(currentSchedule, Schedule) {
         var selection = this;
 
@@ -16,12 +23,12 @@ angular.module('scheduleApp', [])
     }])
     .constant('Schedule', require('./model/schedule'))
     .service('currentSchedule', ['Schedule', function(Schedule) {
-        this.url = Schedule.url(Schedule.defaults());
+        this.obj = Schedule.defaults();
+        this.url = Schedule.url(this.obj);
 
         this.set = function(id) {
-            var schedule = Schedule.defaults();
-            schedule.id = id;
-            this.url = Schedule.url(schedule);
+            this.obj.id = id;
+            this.url = Schedule.url(this.obj);
         };
     }])
 ;

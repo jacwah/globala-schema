@@ -32,5 +32,6 @@ function loadSchedule() {
     });
 }
 
+exports.getConfigPath = getConfigPath;
 exports.saveSchedule = saveSchedule;
 exports.loadSchedule = loadSchedule;

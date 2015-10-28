@@ -6,6 +6,8 @@ var env = require('./vendor/electron_boilerplate/env_config');
 var Menu = require('menu');
 var windowStateKeeper = require('./vendor/electron_boilerplate/window_state');
 
+var config = require('./main/config');
+
 // Keep windows from being GC'd
 var mainWindow = null;
 var aboutWindow = null;
@@ -81,6 +83,8 @@ function createMenus() {
 }
 
 app.on('ready', function () {
+    console.log('Using app directory ' + config.getConfigPath());
+
     require('./main/messaging');
 
     createMenus();
