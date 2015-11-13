@@ -8,9 +8,9 @@
     <body>
         <aside ng-controller="SelectionController as selection">
             <p>
-                <a href="" ng-click="selection.current.previousWeek()">Föregående vecka</a>
-                {{selection.current.week}}
-                <a href="" ng-click="++selection.current.nextWeek()">Nästa vecka</a>
+                <a href="" ng-click="selection.current.previousWeek()">&lt;</a>
+                Vecka {{selection.current.week}}
+                <a href="" ng-click="selection.current.nextWeek()">&gt;</a>
             </p>
             <hr>
             <ul>
