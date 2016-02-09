@@ -2,7 +2,7 @@
 
 var moment = require('moment');
 
-moment().locale('sv');
+moment.locale('sv');
 
 function baseMoment() {
     let m = moment();
