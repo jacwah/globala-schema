@@ -3,7 +3,7 @@
   "productName": "Globala schema",
   "identifier": "com.github.jacwah.globala-schema",
   "description": "Rimligare sätt att visa ditt schema på Globala gymnasiet.",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "author": "Jacob Wahlgren <jacob.wahlgren@gmail.com>",
   "repository": "jacwah/globala-schema",
   "license": "MIT",
